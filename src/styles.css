@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-family: sans-serif;
+}
+
+.space-viewport {
+  width: 100vw;
+  height: 100vh;
+  background: lightgray;
+}
+
+.space-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.space-container .item {
+  position: absolute;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: auto;
+}
+
+.dragging {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+}
+
+.item * {
+  user-select: none;
+}
+
+.item h1 {
+  margin-bottom: 1rem;
+}
+
+.item p {
+  font-size: 16pt;
+  line-height: 1.1;
+}
+
+#data-info {
+  background: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: left;
+}
+
+ul {
+  list-style: none;
+}
+
+#transform-point {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: red;
+  border-radius: 100000px;
+  user-select: none;
+  pointer-events: none;
+}
