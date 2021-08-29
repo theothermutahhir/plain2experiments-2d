@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { Editor } from "./Editor";
 
-export default function SpaceItem({ item, transform }) {
+export default function SpaceItem({ item, transform, onBeginEditing }) {
   const itemRef = useRef();
   const { uuid, location: originalLocation, title, content } = item;
   const [location, setLocation] = useState(originalLocation);
@@ -24,6 +25,9 @@ export default function SpaceItem({ item, transform }) {
   };
 
   const onMouseDown = (event) => {
+    if (item.isEditing) {
+      return;
+    }
     setPressed(true);
   };
 
@@ -46,14 +50,15 @@ export default function SpaceItem({ item, transform }) {
       onMouseUp={onMouseUp}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
+      onDoubleClick={() => onBeginEditing()}
       key={uuid}
       style={{
-        height: location.height,
+        minHeight: location.height,
         width: location.width
       }}
     >
       <h1>{title}</h1>
-      <p>{content}</p>
+      <Editor content={content} isEditing={item.isEditing} />
     </div>
   );
 }

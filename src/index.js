@@ -10,6 +10,7 @@ const space = {
       uuid: 1,
       title: "Hello",
       content: "world",
+      isEditing: false,
       location: {
         x: 100,
         y: 100,
@@ -21,6 +22,7 @@ const space = {
       uuid: 2,
       title: "Welcome to Plain 2",
       content: "This is the best thing for us?",
+      isEditing: false,
       location: {
         x: 0,
         y: 0,
