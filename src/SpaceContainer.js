@@ -62,6 +62,14 @@ function SpaceContainer({ space, transform }, ref) {
     });
   };
 
+  const onClick = (event) => {
+    if (event.target !== ref.current) return;
+
+    dispatch({
+      type: "stop-editing"
+    });
+  };
+
   const onKeyUp = (event) => {
     if (event.keyCode === 27) {
       dispatch({ type: "stop-editing" });
@@ -74,6 +82,7 @@ function SpaceContainer({ space, transform }, ref) {
       ref={ref}
       onDoubleClick={onDoubleClick}
       onKeyUp={onKeyUp}
+      onClick={onClick}
     >
       {state.items.map((item) => (
         <SpaceItem

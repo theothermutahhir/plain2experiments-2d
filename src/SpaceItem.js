@@ -32,7 +32,6 @@ export default function SpaceItem({ item, transform, onBeginEditing }) {
   };
 
   const onMouseUp = (event) => {
-    document.removeEventListener("mousemove", onMouseMove);
     setPressed(false);
   };
 
