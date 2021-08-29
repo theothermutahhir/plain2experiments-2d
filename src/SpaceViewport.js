@@ -5,7 +5,9 @@ import { useTransformer } from "./util/transform";
 export default function SpaceViewport({ space }) {
   const transformer = useRef(useTransformer());
   const ref = useRef();
-  const [currentTransform, setCurrentTransform] = useState({});
+  const [currentTransform, setCurrentTransform] = useState(
+    transformer.current.getTransform()
+  );
 
   const zoomHandler = (event) => {
     const isZoom = !!event.ctrlKey;

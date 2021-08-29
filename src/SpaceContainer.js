@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
 import SpaceItem from "./SpaceItem";
 
-function SpaceContainer({ space, transformStyles }, ref) {
+function SpaceContainer({ space, transform }, ref) {
   const { items } = space;
   return (
     <div className="space-container" ref={ref}>
       {items.map((item) => (
-        <SpaceItem item={item} key={item.uuid} scale={1} />
+        <SpaceItem item={item} key={item.uuid} transform={transform} />
       ))}
     </div>
   );

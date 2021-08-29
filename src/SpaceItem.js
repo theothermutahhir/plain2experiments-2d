@@ -5,20 +5,18 @@ export default function SpaceItem({ item, transform }) {
   const { uuid, location: originalLocation, title, content } = item;
   const [location, setLocation] = useState(originalLocation);
   const [pressed, setPressed] = useState(false);
-  const [offset, setOffset] = useState([0, 0]);
-  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     if (itemRef.current) {
       itemRef.current.style.transform = `translate(${location.x}px, ${location.y}px)`;
     }
-  }, [itemRef, location]);
+  }, [itemRef, location, transform]);
 
   const onMouseMove = (event) => {
     if (pressed) {
       setLocation({
-        x: event.clientX - offset[0],
-        y: event.clientY - offset[1],
+        x: location.x + event.movementX / transform.scale,
+        y: location.y + event.movementY / transform.scale,
         width: location.width,
         height: location.height
       });
@@ -26,20 +24,12 @@ export default function SpaceItem({ item, transform }) {
   };
 
   const onMouseDown = (event) => {
-    const bounds = itemRef.current.getBoundingClientRect();
-    setOffset([event.clientX - bounds.left, event.clientY - bounds.top]);
     setPressed(true);
-    setIsDragging(true);
   };
 
   const onMouseUp = (event) => {
     document.removeEventListener("mousemove", onMouseMove);
-    setOffset([0, 0]);
     setPressed(false);
-    if (isDragging) {
-      itemRef.current.style.zIndex = 1;
-      setIsDragging(false);
-    }
   };
 
   const onMouseLeave = (event) => {
